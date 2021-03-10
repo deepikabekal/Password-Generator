@@ -6,6 +6,7 @@ var confirmLowerCase = false;
 var confirmNumeric = false;
 var confirmSpecial = false;
 var confirmUpperCase = false;
+var finalPassword = "";
 
 function generatePassword () {
   //Welcome message
@@ -57,6 +58,17 @@ function generatePassword () {
     console.log(charOptions);
 
   }
+
+  //choose random characters to create a password of the length of the password
+
+  for (var i = 0; i < passwordLength;i++){
+    var randomValue = Math.floor(Math.random() * (charOptions.length));
+    console.log(randomValue);
+    finalPassword += charOptions[randomValue];
+    console.log(finalPassword);
+    //debugger;
+ }
+ console.log(finalPassword);
 }
 
 generatePassword();
