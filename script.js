@@ -21,6 +21,17 @@ function generatePassword () {
 }
 
 generatePassword();
+
+//function for user confirmation on different character sets
+  
+function userChoice() {
+  confirmLowerCase = confirm("Do you want Lower case letters?");
+  confirmUpperCase = confirm("Do you want Upper case letters?");
+  confirmNumeric = confirm("Do you want numbers?");
+  confirmSpecial = confirm("Do you want special characters?");
+}
+
+
 //Get references to the #generate element
 //var generateBtn = document.querySelector("#generate");
 
