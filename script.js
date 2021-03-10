@@ -30,7 +30,7 @@ function generatePassword () {
   //checks if the entry is less than 8 or more than 128. 
   //If true then sends an alert and asks the user to enter data again
   //If false then does not enter the loop
-  while (passwordObj.passLength < 8 || passwordObj.passLength > 128){
+  while (passwordObj.passLength < 8 || passwordObj.passLength > 128 || typeof(passwordObj.passLength) !== "number"){
     alert("Not a valid entry. Try again!");
     passwordObj.passLength = prompt("How long do you want your password to be? Choose any length between 8 and 128");
     
@@ -74,17 +74,19 @@ function generatePassword () {
 
   //choose random characters to create a password of the length of the password
 
-  for (var i = 0; i < passwordLength;i++){
+  for (var i = 0; i < passwordObj.passLength;i++){
     var randomValue = Math.floor(Math.random() * (charOptions.length));
     console.log(randomValue);
     finalPassword += charOptions[randomValue];
     console.log(finalPassword);
     //debugger;
  }
+
+ return (finalPassword);
  console.log(finalPassword);
 }
 
-generatePassword();
+//generatePassword();
 
 //function for user confirmation on different character sets
   
@@ -97,16 +99,16 @@ function userChoice() {
 
 
 //Get references to the #generate element
-//var generateBtn = document.querySelector("#generate");
+var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
-//function writePassword() {
- // var password = generatePassword();
- // var passwordText = document.querySelector("#password");
+function writePassword() {
+  var password = generatePassword();
+  var passwordText = document.querySelector("#password");
 
-  //passwordText.value = password;
+  passwordText.value = password;
 
-//}
+}
 
 //Add event listener to generate button
-//generateBtn.addEventListener("click", writePassword());
+generateBtn.addEventListener("click", writePassword());
