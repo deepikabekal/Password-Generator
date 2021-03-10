@@ -31,6 +31,32 @@ function generatePassword () {
     alert("Invalid choice. You have to choose atleast 1 option. Try again!");
     userChoice();
   }
+
+  //when the user chooses the character type then all the possibilities will be added to charOptions variable
+  
+  //user chooses lowercase
+  if (confirmLowerCase){
+    charOptions += passwordObj.lowerCase;
+    console.log(charOptions);
+  }
+  //user chooses numeric
+  if (confirmNumeric){
+    charOptions += passwordObj.numericChar;
+    console.log(charOptions);
+  }
+
+  //user chooses upper case
+  if (confirmUpperCase){
+    charOptions += passwordObj.upperCase;
+    console.log(charOptions);
+  }
+
+  //user chooses special characters
+  if (confirmSpecial){
+    charOptions += passwordObj.specialChar;
+    console.log(charOptions);
+
+  }
 }
 
 generatePassword();
