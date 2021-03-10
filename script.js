@@ -2,6 +2,10 @@
 
 //variable to hold length of the password
 var passwordLength = 0;
+var confirmLowerCase = false;
+var confirmNumeric = false;
+var confirmSpecial = false;
+var confirmUpperCase = false;
 
 function generatePassword () {
   //Welcome message
