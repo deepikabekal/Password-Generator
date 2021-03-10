@@ -22,6 +22,15 @@ function generatePassword () {
     
   };
   console.log(passwordLength);
+
+  //User choices - lowercase, uppercase, numeric and special character
+  userChoice();
+  //check whether the user has chosen atleast 1 character type
+  //if not selected then enter the loop and ask to choose again
+  while (!confirmLowerCase && !confirmNumeric && !confirmSpecial && !confirmUpperCase){
+    alert("Invalid choice. You have to choose atleast 1 option. Try again!");
+    userChoice();
+  }
 }
 
 generatePassword();
