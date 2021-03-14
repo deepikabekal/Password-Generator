@@ -51,4 +51,11 @@ THEN the password is either displayed in an alert or written to the page
 * A function which asks the users whether they want to include the character types. This is function is called in the generate password function.
 * In generate password function, the while loop will check if the user has chosen atleast one character type. If none of the character types is selected then the user is prompted to select atleast one. Else all the possible characters in that category is added to an empty string.
 * In the generate password function using the random method characters from the string of character types created is extracted and added to a variable until the for loop reaches the password length. 
-* The password created is
+* The password created is retuned to the function that will display it to the user in the text area.
+
+## References
+* Study Material for HTML, CSS and javascript provided by Trilogy Education Services.
+* www.w3schools.com
+* https://developer.mozilla.org/en-US/docs/
+* Javascript and JQuery book by Jon Duckett
+* https://javascript-workbook.netlify.app/
