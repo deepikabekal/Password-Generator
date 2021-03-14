@@ -34,6 +34,7 @@ function generatePassword() {
 
   //User choices - lowercase, uppercase, numeric and special character
   userChoice();
+
   //check whether the user has chosen atleast 1 character type
   //if not selected then enter the loop and ask to choose again
   while (!confirmLowerCase && !confirmNumeric && !confirmSpecial && !confirmUpperCase){
@@ -47,48 +48,37 @@ function generatePassword() {
   if (confirmLowerCase){
     characterOptions += passwordObj.lowerCase;
     characterChoices.push("lowerCase");
-    console.log(characterOptions);
-    console.log(characterChoices);
   }
   //user chooses numeric
   if (confirmNumeric){
     characterOptions += passwordObj.numericChar;
     characterChoices.push("numericChar");
-    console.log(characterOptions);
-    console.log(characterChoices);
-
   }
 
   //user chooses upper case
   if (confirmUpperCase){
     characterOptions += passwordObj.upperCase;
-    characterChoices.push("upperCase");
-    console.log(characterOptions);
-    console.log(characterChoices);
+    characterChoices.push("upperCase");   
 
   }
 
   //user chooses special characters
   if (confirmSpecial){
     characterOptions += passwordObj.specialChar;
-    characterChoices.push("specialChar");
-    console.log(characterOptions);
-    console.log(characterChoices);
-
-
+    characterChoices.push("specialChar");    
   }
-
+  //function call to generate a random password
   finalPassword = randomPassword(characterOptions);
-  console.log(finalPassword);
-  finalPassword = verifyPassword(finalPassword,characterChoices);
-  console.log(finalPassword);
   
+  //function call to verify the password
+  finalPassword = verifyPassword(finalPassword,characterChoices);
+  
+  //return the password to display in text area
   return finalPassword;
   
- //console.log(finalPassword);
+ 
 }
 
-//generatePassword();
 
 //function for user confirmation on different character sets
   
@@ -104,7 +94,7 @@ function passwordLength(){
   //Password length
   //prompt to select a length between 8 and 128
   var checkLength = parseInt(prompt("How long do you want your password to be? Choose any length between 8 and 128"));
-  //console.log(typeof(passwordObj.passLength));
+  
   //checks if the entry is less than 8 or more than 128 or if the entry is not a number
   //If true then sends an alert and asks the user to enter data again
   //If false then does not enter the loop
@@ -115,7 +105,7 @@ function passwordLength(){
   
   return(checkLength);
 }
-
+//function that will create a rondom password
 function randomPassword(charOptions){
 
   //choose random characters to create a password of the length of the password
@@ -124,34 +114,39 @@ function randomPassword(charOptions){
     var randomValue = Math.floor(Math.random() * (charOptions.length));
    // console.log(randomValue);
     newPassword += charOptions[randomValue];
-    console.log(newPassword);
+    // console.log(newPassword);
     
  }  
   return (newPassword);
 }
 
+//function that will verify whether the password generated has all the characters chosen by the user
 function verifyPassword(passCheck,charChoices){
   var charChoice = "";
   var doNotMutate = [];
   var newString = ""
   var passwordCheck = passCheck;
   
-
+  //loops based on the character choices the user has made
   for (var i=0;i < charChoices.length;i++)
   {
-    //debugger;
-    console.log(charChoices);
+    
+    //array that holds the user choices
     charChoice = charChoices[i];
-    console.log(charChoice);
+    //variable to hold the value of the obkject key
     var character = passwordObj[charChoice];
-    console.log(character);
+    //random index for the character set
     charIndex = Math.floor(Math.random()*character.length);
+
+    //if the password index exists in the array then it loops until new index is generated
     do {
       passwordIndex = Math.floor(Math.random()*passwordCheck.length)
       
     }
     while (doNotMutate.includes(passwordIndex));
+    //holds the index of the characters that's already changed
     doNotMutate.push(passwordIndex);
+    //for loop to add the new character along with the old characters
     for (var j=0; j<passwordCheck.length;j++){
       if (j===passwordIndex){
         newString = newString + character[charIndex];
@@ -185,7 +180,7 @@ function writePassword() {
   passwordText.value = password;
 
 }
-console.log(generateBtn);
+// console.log(generateBtn);
 //Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
