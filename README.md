@@ -9,7 +9,7 @@ A website that asks the user for the length of the password, whether the passwor
 https://deepikabekal.github.io/Password-Generator/
 
 ## Screenshot
-
+<img src="assets/images/challenge-3.gif" width=100>
 
 ## Technologies Used
 * HTML
