@@ -15,27 +15,20 @@ var confirmNumeric = false;
 var confirmSpecial = false;
 var confirmUpperCase = false;
 
-//variables for final password and to hold a string of characters for random selection
-var charOptions = "";
-var finalPassword = "";
+
+
 
 //funtion declaration
 
-function generatePassword () {
+function generatePassword() {
+  //variables for final password and to hold a string of characters for random selection
+  var charOptions = "";
+  var finalPassword = "";
   //Welcome message
   alert("Let's get you a new password!");
-  //Password length
-  //prompt to select a length between 8 and 128
-  passwordObj.passLength = prompt("How long do you want your password to be? Choose any length between 8 and 128");
-  //checks if the entry is less than 8 or more than 128. 
-  //If true then sends an alert and asks the user to enter data again
-  //If false then does not enter the loop
-  while (passwordObj.passLength < 8 || passwordObj.passLength > 128 || typeof(passwordObj.passLength) !== "number"){
-    alert("Not a valid entry. Try again!");
-    passwordObj.passLength = prompt("How long do you want your password to be? Choose any length between 8 and 128");
-    
-  };
-  console.log(passwordObj.passLength);
+
+  passwordObj.passLength =  passwordLength();
+
 
   //User choices - lowercase, uppercase, numeric and special character
   userChoice();
@@ -97,18 +90,37 @@ function userChoice() {
   confirmSpecial = confirm("Do you want special characters?");
 }
 
+//function for the length of the password
+function passwordLength(){
+  //Password length
+  //prompt to select a length between 8 and 128
+  var checkLength = parseInt(prompt("How long do you want your password to be? Choose any length between 8 and 128"));
+  //console.log(typeof(passwordObj.passLength));
+  //checks if the entry is less than 8 or more than 128 or if the entry is not a number
+  //If true then sends an alert and asks the user to enter data again
+  //If false then does not enter the loop
+  while (checkLength < 8 || checkLength > 128 || isNaN(checkLength) ){
+    alert("Not a valid entry. Try again!");
+    checkLength = parseInt( prompt("How long do you want your password to be? Choose any length between 8 and 128"));
+  };
+  
+  return(checkLength);
+}
 
 //Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
+  
   var password = generatePassword();
+
   var passwordText = document.querySelector("#password");
+  
 
   passwordText.value = password;
 
 }
-
+console.log(generateBtn);
 //Add event listener to generate button
-generateBtn.addEventListener("click", writePassword());
+generateBtn.addEventListener("click", writePassword);
