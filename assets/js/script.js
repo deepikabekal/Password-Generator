@@ -22,8 +22,10 @@ var confirmUpperCase = false;
 
 function generatePassword() {
   //variables for final password and to hold a string of characters for random selection
-  var charOptions = "";
+  var characterOptions = "";
   var finalPassword = "";
+  var characterChoices = [];
+  
   //Welcome message
   alert("Let's get you a new password!");
 
@@ -43,40 +45,47 @@ function generatePassword() {
   
   //user chooses lowercase
   if (confirmLowerCase){
-    charOptions += passwordObj.lowerCase;
-    console.log(charOptions);
+    characterOptions += passwordObj.lowerCase;
+    characterChoices.push("lowerCase");
+    console.log(characterOptions);
+    console.log(characterChoices);
   }
   //user chooses numeric
   if (confirmNumeric){
-    charOptions += passwordObj.numericChar;
-    console.log(charOptions);
+    characterOptions += passwordObj.numericChar;
+    characterChoices.push("numericChar");
+    console.log(characterOptions);
+    console.log(characterChoices);
+
   }
 
   //user chooses upper case
   if (confirmUpperCase){
-    charOptions += passwordObj.upperCase;
-    console.log(charOptions);
+    characterOptions += passwordObj.upperCase;
+    characterChoices.push("upperCase");
+    console.log(characterOptions);
+    console.log(characterChoices);
+
   }
 
   //user chooses special characters
   if (confirmSpecial){
-    charOptions += passwordObj.specialChar;
-    console.log(charOptions);
+    characterOptions += passwordObj.specialChar;
+    characterChoices.push("specialChar");
+    console.log(characterOptions);
+    console.log(characterChoices);
+
 
   }
 
-  //choose random characters to create a password of the length of the password
-
-  for (var i = 0; i < passwordObj.passLength;i++){
-    var randomValue = Math.floor(Math.random() * (charOptions.length));
-    console.log(randomValue);
-    finalPassword += charOptions[randomValue];
-    console.log(finalPassword);
-    //debugger;
- }
-
- return (finalPassword);
- console.log(finalPassword);
+  finalPassword = randomPassword(characterOptions);
+  console.log(finalPassword);
+  finalPassword = verifyPassword(finalPassword,characterChoices);
+  console.log(finalPassword);
+  
+  return finalPassword;
+  
+ //console.log(finalPassword);
 }
 
 //generatePassword();
@@ -107,6 +116,61 @@ function passwordLength(){
   return(checkLength);
 }
 
+function randomPassword(charOptions){
+
+  //choose random characters to create a password of the length of the password
+  var newPassword = "";
+  for (var i = 0; i < passwordObj.passLength;i++){
+    var randomValue = Math.floor(Math.random() * (charOptions.length));
+   // console.log(randomValue);
+    newPassword += charOptions[randomValue];
+    console.log(newPassword);
+    
+ }  
+  return (newPassword);
+}
+
+function verifyPassword(passCheck,charChoices){
+  var charChoice = "";
+  var doNotMutate = [];
+  var newString = ""
+  var passwordCheck = passCheck;
+  
+
+  for (var i=0;i < charChoices.length;i++)
+  {
+    //debugger;
+    console.log(charChoices);
+    charChoice = charChoices[i];
+    console.log(charChoice);
+    var character = passwordObj[charChoice];
+    console.log(character);
+    charIndex = Math.floor(Math.random()*character.length);
+    do {
+      passwordIndex = Math.floor(Math.random()*passwordCheck.length)
+      
+    }
+    while (doNotMutate.includes(passwordIndex));
+    doNotMutate.push(passwordIndex);
+    for (var j=0; j<passwordCheck.length;j++){
+      if (j===passwordIndex){
+        newString = newString + character[charIndex];
+      } else {
+       newString = newString + passwordCheck[j];
+      }
+    }
+
+    passwordCheck = newString;
+    newString = "";
+        
+  }
+
+  return(passwordCheck);
+
+
+}
+
+
 //Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
@@ -124,3 +188,5 @@ function writePassword() {
 console.log(generateBtn);
 //Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+
